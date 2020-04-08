@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="jquery.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+      var socket = io("http://localhost:3000");
+      $(document).ready(function () {
+        $("#mrA").click(function () {
+          socket.emit("Client-send-data", $("#inputA").val());
+        });
+        socket.on("Server-send-data", function (data) {
+          console.log(data);
+        });
+        socket.on("Current-send-data", function (data) {
+          console.log(data);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Home</h1>
+    <input id="inputA" name="valueA" />
+    <button id="mrA" type="button">Click send</button>
+  </body>
+</html>
