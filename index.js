@@ -9,6 +9,8 @@ var server = require("http").Server(app);
 var io = require("socket.io")(server);
 server.listen(3000);
 
+var users = ['bbb'];
+
 io.on("connection", function (socket) {
   console.log("Co ket noi: " + socket.id);
   //Disconnect
@@ -16,8 +18,32 @@ io.on("connection", function (socket) {
     console.log("Ngat ket noi: " + socket.id);
   });
 
+  socket.on("Client-send-register",function(data){
+
+    if(users.some((e)=>e==data))
+    {
+      socket.emit("Server-send-register-data",{"status":"existed"})
+      console.log(data + " existed")
+    }
+    else{
+     users.push(data);
+     socket.Username = data;
+    console.log("Added user "+data);
+    socket.emit("Server-send-register-data",{"status":"approved",
+    "username":data     
+    });
+
+    io.sockets.emit("server-send-online-user-list",sockets)
+
+    console.log(users);
+    
+    }
+    
+  });
+
   socket.on("Client-send-data", function (data) {
     console.log(data);
+    
     // all sockets will recieve data from server
     //io.sockets.emit("Server-send-data", socket.id + " " + data + "8888");
 

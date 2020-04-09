@@ -1,0 +1,11 @@
+.userOnline{
+    text-align: center;
+    color: green;
+    font-weight: 800;
+    font-size: medium;
+}
+
+#btnLogout{
+    
+    float: right;
+}

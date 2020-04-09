@@ -6,24 +6,61 @@
     <title>Document</title>
     <script src="jquery.min.js"></script>
     <script src="socket.io/socket.io.js"></script>
-    <script>
-      var socket = io("http://localhost:3000");
-      $(document).ready(function () {
-        $("#mrA").click(function () {
-          socket.emit("Client-send-data", $("#inputA").val());
-        });
-        socket.on("Server-send-data", function (data) {
-          console.log(data);
-        });
-        socket.on("Current-send-data", function (data) {
-          console.log(data);
-        });
-      });
+    <script src="process.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <link rel="stylesheet" href="layout.css">
+    
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script>     
     </script>
   </head>
   <body>
-    <h1>Home</h1>
+    <!-- <h1>Home</h1>
     <input id="inputA" name="valueA" />
-    <button id="mrA" type="button">Click send</button>
+    <button id="mrA" type="button">Click send</button> -->
+  <div class="wrapper">
+    <div id = "loginForm">
+      <h3>What's your name?</h3>
+      <input type="text" id="txtUserName">
+      <button type="button" class="btn btn-success" id="btnRegister">Register</button>
+    </div>
+    <div id="chatForm">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card" id="left">
+              <div class="card-header" id="boxTitle">
+                <h2>Online</h2>
+              </div>
+              <div class="card-body" id="boxContent">
+                <div class="userOnline">NguyenA</div>
+                <div class="userOnline">Admin</div>
+                <div class="userOnline">HuyLe</div>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          
+          <div class="card" id="right">
+            <div class="card-header" id="sayHi">
+              <div class="row">
+              <h2 style="float: left;">Hello <span id="currentUser"> Teo </span></h2>
+              <button style="float:right" class="btn btn-secondary" id="btnLogout">Logout</button>
+
+              </div>
+              
+            </div>   
+            <div class="card-body">...</div>  
+            <div class="card-footer">
+              <input type="text" id="txtMessage">
+              <button type="button" class="btn btn-secondary" id="sendMessage">Send</button>
+            </div>       
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+
   </body>
 </html>
